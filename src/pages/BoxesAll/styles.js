@@ -62,21 +62,7 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         alignItems: 'center',
         justifyContent: 'center'
-    },
-
-    fab2: {
-        position: 'absolute',
-        right: 110,
-        bottom: 30 + getBottomSpace(),
-        width: 60,
-        height: 60,
-        backgroundColor: '#7159c1',
-        borderRadius: 30,
-        alignItems: 'center',
-        justifyContent: 'center'
     }
-
-
 });
 
 export default styles;

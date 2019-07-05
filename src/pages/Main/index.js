@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 
 import api from '../../services/api';
  
@@ -13,12 +15,16 @@ export default class Main extends Component {
     newBox: ''
   } 
 
-  async componentDidMount(){
-    const box = await AsyncStorage.getItem('@AppBox:box');
+  async componentDidMount() {
+    const box = await AsyncStorage.getItem("@AppBox:box");
 
     if (box) {
       this.props.navigation.navigate('Box'); 
     }
+  }
+
+  handleNavigationList = () => {
+    this.props.navigation.navigate('BoxesAll');
   }
 
   handleSignIn = async () => {
@@ -35,6 +41,7 @@ export default class Main extends Component {
 
   render() {
     return ( 
+      
         <View style={styles.container}>
             <Image style={styles.logo} source={logo} />
             
@@ -52,7 +59,11 @@ export default class Main extends Component {
             <TouchableOpacity onPress={this.handleSignIn} style={styles.button}>
               <Text style={styles.buttonText}>CRIAR BOX</Text>
             </TouchableOpacity>
- 
+
+            <TouchableOpacity onPress={this.handleNavigationList} style={styles.fab}>
+              <Icon name="list" size={32} color="#FFF" />
+            </TouchableOpacity>
+  
         </View>  
     );
     

@@ -23,14 +23,13 @@ export default class Box extends Component {
 
   async componentDidMount() {
     
+    
     const box = await AsyncStorage.getItem('@AppBox:box');
 
-    console.log(box);
-     
     this.subscribeToNewFiles(box);
     
-    const response = await api.get(`boxes/${box}`);
-
+    const response = await api.get(`boxes/show/all`);
+    
     this.setState({ box: response.data });
   
   }
@@ -48,61 +47,38 @@ export default class Box extends Component {
     });
   }; 
 
-  openFile = async (file) => {
+  openFolder = async (folder) => {
 
     try{
 
-      const filePath = `${RNFS.DocumentDirectoryPath}/${file.title}`;
+      
+        this.props.navigation.navigate('Box'); 
+      
 
-      await RNFS.downloadFile({
-        fromUrl: file.url,
-        toFile: filePath,
-      });
 
-      await FileViewer.open(filePath);
-
+     
+      
     } catch (err) {
-      console.log('arquivo não suportado');
+      console.log('arquivo não encontrado');
     }
-
+ 
   };
   
-  handleNavigationList = () => {
-    this.props.navigation.navigate('BoxesAll');
+  
+  handleNavigationAdd = () => {
+    this.props.navigation.navigate('BoxesAll'); 
+
   }
- 
-  handleUpload = () => {
-   ImagePicker.launchImageLibrary({}, async upload => {
-     if(upload.error){
-       console.log('Error');
-     }else if(upload.didCancel) {
-       console.log('Cancelar');
-     }else{
-
-       const data = new FormData();
-       
-       const [prefix, suffix] = upload.fileName.split('.');
-       const ext = suffix.toLowerCase() === 'heic' ? 'jpg' : suffix;
-
-       data.append('file', {
-          uri: upload.uri,
-          type: upload.type, 
-          name: `${prefix}.${ext}`
-       })
- 
-       api.post(`boxes/${this.state.box._id}/files`, data);
-     }
-   });
-  };
-
+  
   renderItem = ({ item }) => (
+    
     <TouchableOpacity
-      onPress={() => this.openFile(item)}
+      onPress={() => this.openFolder(item)}
       style={styles.file}
     >
       <View style={styles.fileInfo}>
         <Icon name="insert-drive-file" size={24} color="#A5CFFF" />
-        <Text style={styles.fileTitle}>{item.title}></Text>
+        <Text style={styles.fileTitle}>{item.title}</Text>
       </View>
 
       <Text style={styles.fileDate}>
@@ -114,23 +90,21 @@ export default class Box extends Component {
      
   render() {
     return (
+
+      
       <View style={styles.container}>
-        <Text style={styles.boxTitle}>{this.state.box.title}</Text>
+        <Text style={styles.boxTitle}>Boxes</Text>
 
         <FlatList
           style={styles.list} 
-          data={this.state.box.files}
+          data={this.state.box}
           keyExtractor={ file => file._id }
           ItemSeparatorComponent={() => <View style={styles.separator} />}
           renderItem={this.renderItem}
         />
-        <TouchableOpacity style={styles.fab} onPress={this.handleUpload}>
-          <Icon name="cloud-upload" size={24} color="#FFF" />
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.fab2} onPress={this.handleNavigationList}>
-          <Icon name="list" size={24} color="#FFF" />
-        </TouchableOpacity>
+        <TouchableOpacity style={styles.fab} onPress={this.handleNavigationAdd}>
+          <Icon name="add" size={32} color="#FFF" />
+        </TouchableOpacity> 
       </View> 
     );
   } 

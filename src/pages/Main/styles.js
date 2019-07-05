@@ -1,5 +1,11 @@
 import { StyleSheet } from "react-native";
 
+import {
+    getBottomSpace,
+    getStatusBarHeight
+} from "react-native-iphone-x-helper";
+ 
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -39,6 +45,18 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: 16,
         color: '#fff'
+    },
+
+    fab: {
+        position: 'absolute',
+        right: 30,
+        bottom: 30 + getBottomSpace(),
+        width: 60,
+        height: 60,
+        backgroundColor: '#7159c1',
+        borderRadius: 30,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 
 });
