@@ -47,7 +47,7 @@ export default class Box extends Component {
         });
     });
   }; 
-
+  
   openFile = async (file) => {
 
     try{

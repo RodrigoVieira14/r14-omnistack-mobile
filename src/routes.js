@@ -9,7 +9,7 @@ const Routes = createAppContainer(
         BoxesAll,
         Main,
         Box,
-    })
+    }) 
 );
 
 

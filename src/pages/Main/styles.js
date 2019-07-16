@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
     },
 
     logo: {
-        width: 60,
-        height: 32,
+        width: 150,
+        height: 80,
         alignSelf: "center"
     },
 
@@ -36,9 +36,9 @@ const styles = StyleSheet.create({
         fontSize: 16,
         paddingHorizontal: 20,
         marginTop: 10,
-        backgroundColor: "#7159c1",
+        backgroundColor: "#076284",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center" 
     },
 
     buttonText: {
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         bottom: 30 + getBottomSpace(),
         width: 60,
         height: 60,
-        backgroundColor: '#7159c1',
+        backgroundColor: '#0dacbb',
         borderRadius: 30,
         alignItems: 'center',
         justifyContent: 'center'

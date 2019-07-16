@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     },
 
     boxTitle: {
-        marginTop: 50,
+        marginTop: 10,
         textAlign: 'center',
         fontSize: 24,
         fontWeight: 'bold',
@@ -52,13 +52,26 @@ const styles = StyleSheet.create({
         color: '#666'
     },
 
+    logo: {
+        width: 120,
+        height: 60,
+        alignSelf: "center"
+    },
+
+    header: {
+        height: 60,
+        borderColor: '#EEE',
+        borderStyle: 'solid',
+        borderBottomWidth: 1
+    },
+
     fab: {
         position: 'absolute',
         right: 30,
         bottom: 30 + getBottomSpace(),
         width: 60,
         height: 60,
-        backgroundColor: '#7159c1',
+        backgroundColor: '#0dacbb',
         borderRadius: 30,
         alignItems: 'center',
         justifyContent: 'center'
